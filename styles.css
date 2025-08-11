@@ -1,0 +1,92 @@
+
+/* ===== Design tokens (light by default) ===== */
+:root{
+  --bg:#f8fafc; --panel:#ffffff; --text:#0f172a; --muted:#475569;
+  --accent:#60a5fa; --brand:#f9a8d4;
+  --success:#22c55e; --warn:#f59e0b; --error:#ef4444;
+  --radius:20px; --shadow:0 8px 24px rgba(2,6,23,.08);
+}
+body.dark{ --bg:#0f172a; --panel:#111827; --text:#e5e7eb; --muted:#9ca3af; --shadow:0 8px 24px rgba(0,0,0,.25); }
+body{ background:var(--bg); color:var(--text); }
+.container{ max-width:1040px; margin:0 auto; padding-inline:16px }
+.grid{ display:grid; gap:16px }
+@media(min-width:768px){ .grid-2{ grid-template-columns:1fr 1fr } .grid-3{ grid-template-columns:repeat(3,1fr) } }
+.card{ background:var(--panel); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px }
+button{ cursor:pointer }
+button, input, select, textarea{ background:#f1f5f9; border:1px solid #e2e8f0; color:inherit; padding:10px 12px; border-radius:14px }
+body.dark button, body.dark input, body.dark select, body.dark textarea{ background:#0b1220; border-color:#1f2937 }
+button.primary{ background:var(--accent); color:#081324; border:0 }
+button.secondary{ background:#dbeafe; color:#0b1220; border:0 }
+button.ghost{ background:transparent; border:1px solid #cbd5e1 }
+.badge{ background:#e2e8f0; color:#0b1220; padding:4px 8px; border-radius:999px }
+body.dark .badge{ background:#1f2937; color:#e5e7eb }
+.tab.active{ background:#e2e8f0 }
+.skeleton{ position:relative; overflow:hidden; background:linear-gradient(90deg,#e5e7eb 25%,#f3f4f6 50%,#e5e7eb 75%); background-size:200% 100%; animation:loadwave 1.5s infinite }
+@keyframes loadwave{ 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+/* segmented control */
+.segmented{ display:inline-flex; gap:4px; background:#e2e8f0; border-radius:12px; padding:4px }
+.segmented button{ background:transparent; border:0; padding:8px 12px }
+.segmented .active{ background:var(--accent); color:#081324; border-radius:10px }
+/* dock */
+.dock{ position:sticky; bottom:0; background:rgba(255,255,255,.88); backdrop-filter: blur(6px); padding:10px; border-radius:16px; display:flex; gap:8px; justify-content:space-around; box-shadow:0 -6px 20px rgba(2,6,23,.06) }
+body.dark .dock{ background:rgba(15,23,42,.9) }
+#fa-att .fa-stu{ user-select:none; min-height:72px; border:1px dashed #e2e8f0 }
+.fa-stu .st-P{ color:var(--success) } .fa-stu .st-A{ color:var(--warn) } .fa-stu .st-F{ color:var(--error) }
+.hide{ display:none !important }
+/* two-column panel for exercícios */
+@media(min-width:992px){
+  #tab-ex .layout{ display:grid; grid-template-columns: 420px 1fr; gap:16px }
+  #tab-ex .actions{ position:sticky; top:12px }
+  #tab-ex pre{ min-height:280px }
+}
+
+
+:root{--bg:#0f172a;--panel:#0b1220;--muted:#9ca3af;--text:#e5e7eb;--brand:#0ea5e9;--ok:#10b981;--warn:#f59e0b;--err:#ef4444;--pink:#f472b6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+a{color:#93c5fd;text-decoration:none}
+header{position:sticky;top:0;background:rgba(14,165,233,.06);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
+.container{max-width:1080px;margin:0 auto;padding:14px}
+.brand{display:flex;gap:10px;align-items:center}
+.brand img,.brand video{width:36px;height:36px;border-radius:8px;display:block}
+h1{margin:0;font-size:20px}
+nav{display:flex;gap:8px;flex-wrap:wrap;padding:10px}
+.tab{background:#1f2937;border:1px solid #273144;color:#e5e7eb;border-radius:10px;padding:8px 12px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.tab.active{background:#0ea5e9;color:#001018;border-color:#0ea5e9}
+main{padding:12px}
+.grid{display:grid;gap:12px}
+@media(min-width:860px){.grid-2{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:repeat(3,1fr)}}
+.card{background:rgba(17,24,39,.6);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px}
+.card h2{margin-top:0}
+label{display:block;margin:8px 0 6px;color:#cbd5e1}
+input,textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid #273144;background:var(--panel);color:#e5e7eb}
+button{background:#0ea5e9;color:#001018;border:none;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
+button.secondary{background:#1f2937;color:#e5e7eb;border:1px solid #273144}
+button.ghost{background:transparent;border:1px solid #273144;color:#e5e7eb}
+.badge{display:inline-block;background:#1f2937;border:1px solid #273144;border-radius:999px;padding:4px 8px;font-size:12px;color:#cbd5e1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+hr{border:none;border-top:1px solid rgba(255,255,255,.06);margin:14px 0}
+.small{color:var(--muted);font-size:12px}
+.code{font-family:ui-monospace,Consolas,monospace;font-size:12px;background:#0b1220;border:1px solid #273144;border-radius:12px;padding:10px;overflow:auto}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;background:#111827;border:1px solid #273144;color:#e5e7eb;padding:10px 14px;border-radius:12px;display:none;z-index:1000}
+.hide{display:none}
+.logo-anim{background:#ffe4ef}
+@media (prefers-reduced-motion: reduce){
+  .logo-anim{display:none}
+  .logo-fallback{display:block!important}
+}
+
+/* --- Performance UI helpers --- */
+.skeleton{position:relative;overflow:hidden;background:linear-gradient(90deg,#1f2937 25%,#374151 50%,#1f2937 75%);background-size:200% 100%;animation:loadwave 1.5s infinite}
+@keyframes loadwave{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.toast{left:50%;position:fixed;transform:translate(-50%, 24px);transition:transform .28s ease, opacity .2s ease;opacity:.0}
+.toast.show{transform:translate(-50%, 0);opacity:1}
+
+/* Accessibility toggles */
+body.contrast{ --bg:#000; --panel:#000; --text:#fff; --muted:#bbb; }
+body.large{ font-size: 18px; }
+
+.dock{ position:sticky; bottom:0; background:rgba(15,23,42,.9); backdrop-filter: blur(6px); padding:10px; border-radius:16px; display:flex; gap:8px; justify-content:space-around; }
+.dock button{ padding:10px 12px; border-radius:12px; }
+#fa-att .fa-stu{ user-select:none; }
+.hide{ display:none !important; }

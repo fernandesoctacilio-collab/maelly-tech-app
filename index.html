@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#0ea5e9"/>
+<title>Maelly Tech — Ferramentas Pedagógicas</title>
+<link rel="manifest" href="manifest.webmanifest"/>
+<link rel="icon" href="icons/icon-192.png"/>
+<link rel="stylesheet" href="styles.css"/>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<!-- libs -->
+<script defer src="https://cdn.jsdelivr.net/npm/dexie@4.0.8/dist/dexie.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/minisearch@7.1.0/dist/umd/index.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js" onerror="this.onerror=null;this.src='https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js'"></script>
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<header>
+  <div class="container row" style="justify-content:space-between">
+    <div class="brand">
+      <video class="logo-anim" src="media/logo-anim.mp4" poster="icons/logo-app.png" muted playsinline loop autoplay></video>
+      <img src="icons/logo-app.png" alt="Maelly Tech" class="logo-fallback" style="display:none"/>
+      <div><h1>Maelly Tech</h1><div class="small">Ferramentas Pedagógicas • PWA</div></div>
+    </div>
+    <div class="row"><button id="btn-contrast" class="ghost">Alto contraste</button><button id="btn-font" class="ghost">A+</button><button id="btn-install" class="ghost">Instalar</button><button id="btn-check-updates" class="secondary">Atualizações</button></div>
+  </div>
+  <nav class="container" id="tabs">
+    <button class="tab active" data-target="tab-home"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M3 12l9-7 9 7v8a2 2 0 0 1-2 2h-2"/></svg></span><span>Início</span></button>
+    <button class="tab" data-target="tab-classroom"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M3 4h18v14H3z"/><path d="M8 22h8"/></svg></span><span>Aula</span></button>
+    <button class="tab" data-target="tab-reg"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h6"/></svg></span><span>Registros</span></button>
+    <button class="tab" data-target="tab-att"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><circle cx="12" cy="7" r="3"/><path d="M5 21a7 7 0 0 1 14 0"/><path d="M3 12l3 3 4-5" stroke="#f472b6"/></svg></span><span>Presença</span></button>
+    <button class="tab" data-target="tab-bncc"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span>Matérias/BNCC</span></button>
+    <button class="tab" data-target="tab-agenda"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg></span><span>Agenda</span></button>
+    <button class="tab" data-target="tab-lesson"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="2"><path d="M3 7h18M6 3v4M18 3v4"/><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M7 12h6M7 16h10"/></svg></span><span>Agente: Plano</span></button>
+    <button class="tab" data-target="tab-story"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M4 19a4 4 0 0 1 4-4h12v5H8a4 4 0 0 0-4 4z" transform="translate(0 -4)"/><path d="M8 5h12v12H8a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z"/><circle cx="14" cy="10" r="1" fill="#f472b6"/></svg></span><span>Agente: Histórias</span></button>
+    <button class="tab" data-target="tab-ex"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h8"/><path d="M6 12l2 2 3-3" stroke="#10b981"/></svg></span><span>Exercícios</span></button>
+    <button class="tab" data-target="tab-bank"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h10M7 12h10M7 17h10"/></svg></span><span>Banco</span></button>
+    <button class="tab" data-target="tab-config"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6l-.09.1a2 2 0 1 1-3.16 0l-.09-.1a1.65 1.65 0 0 0-1-.6 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-.6-1l-.1-.09a2 2 0 1 1 0-3.16l.1-.09a1.65 1.65 0 0 0 .6-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06A2 2 0 1 1 7.04 3l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-.6l.09-.1a2 2 0 1 1 3.16 0l.09.1a1.65 1.65 0 0 0 1 .6 1.65 1.65 0 0 0 1.82-.33l.06-.06A2 2 0 1 1 21 7.04l-.06.06a1.65 1.65 0 0 0-.6 1 1.65 1.65 0 0 0 .33 1.82l.06.06A2 2 0 1 1 17.84 12l-.06-.06A1.65 1.65 0 0 0 15 10.6 1.65 1.65 0 0 0 14 10a1.65 1.65 0 0 0-1 .6"/><!-- gear-ish --></svg></span><span>Config</span></button>
+    <button class="tab" data-target="tab-backup"><span class="tab-icn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="2"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><rect x="4" y="15" width="16" height="6" rx="2"/></svg></span><span>Backup</span></button>
+  </nav>
+</header>
+
+<main class="container">
+  <!-- Home -->
+  <section id="tab-home" class="">
+    <div class="grid grid-3">
+      <div class="card"><h2>Atalhos</h2>
+        <div class="row"><button id="go-presenca">Presença de hoje</button><button id="go-ex">Gerar Exercícios</button><button id="go-plano" class="secondary">Plano rápido</button></div>
+      </div>
+      <div class="card"><h2>Últimos arquivos</h2><div id="home-files" class="small"></div></div>
+      <div class="card"><h2>Últimos planos</h2><div id="home-lessons" class="small"></div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><h2>BNCC — Cobertura por turma</h2><div id="home-cov"></div></div>
+  </section>
+<!-- existing -->
+  <!-- Registros -->
+  <section id="tab-reg" class="">
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>Turmas e Alunos</h2>
+        <label>Nome da turma</label><input id="c-nome" placeholder="Ex.: 5º Ano A"/>
+        <div class="row"><label>Ano</label><input id="c-ano" style="width:120px" placeholder="2025"/><label>Turno</label><input id="c-turno" style="width:120px" placeholder="Manhã"/></div>
+        <div class="row"><button id="c-add">Criar turma</button></div>
+        <hr/>
+        <div class="row"><label>Turma</label><select id="c-sel"></select></div>
+        <label>Aluno</label><input id="s-nome" placeholder="Nome do aluno"/><div class="row"><button id="s-add">Adicionar aluno</button></div>
+        <div id="s-list" style="margin-top:8px"></div>
+      </div>
+      <div class="card">
+        <h2>Arquivos</h2>
+        <input id="f-in" type="file" multiple/>
+        <div class="row" style="margin-top:8px"><button id="f-save">Anexar</button><button id="f-listar" class="secondary">Listar</button></div>
+        <div id="f-list" style="margin-top:8px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Presença -->
+  <section id="tab-att" class="hide">
+    <div class="card">
+      <h2>Controle de Presença</h2>
+      <div class="row"><label>Turma</label><select id="att-class"></select><label>Data</label><input id="att-date" type="date"/></div>
+      <div id="att-mount" style="margin-top:10px"></div>
+      <div class="row" style="margin-top:10px"><button id="att-load">Carregar</button><button id="att-save" class="secondary">Salvar</button><button id="att-pdf" class="ghost">Gerar Notificação (PDF)</button></div>
+      <div class="row" style="margin-top:10px"><label>De</label><input id="att-from" type="date"/><label>Até</label><input id="att-to" type="date"/><button id="att-export" class="ghost">Exportar CSV</button></div>
+    </div>
+  </section>
+
+  <!-- Matérias / BNCC -->
+  <section id="tab-bncc" class="">
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>Matérias (da professora)</h2>
+        <div id="subjects-mount" class="grid"></div>
+      </div>
+      <div class="card">
+        <h2>Buscar BNCC</h2>
+        <div class="row"><input id="bncc-q" placeholder="Código ou palavra-chave (ex.: EF15LP16, leitura)"/><button id="bncc-buscar">Buscar</button></div>
+        <div id="bncc-res" style="margin-top:8px"></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Modo Aula -->
+  <section id="tab-classroom" class="hide">
+    <div class="card" style="padding:8px">
+      <h2>Modo Aula</h2>
+      <div class="row">
+        <label>Turma</label><select id="fa-class"></select>
+        <label>Data</label><input type="date" id="fa-date"/>
+        <button id="fa-open" class="secondary">Iniciar</button>
+        <button id="fa-close" class="ghost">Fechar aula</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>1) Chamada rápida</h3>
+      <div id="fa-att"></div>
+      <div class="row"><button id="fa-save" class="secondary">Salvar</button><button id="fa-pdf" class="ghost">PDF de faltas</button></div>
+    </div>
+    <div class="card">
+      <h3>2) Conteúdo dado</h3>
+      <div class="row"><input id="fa-tema" placeholder="O que foi dado hoje?"/><button id="fa-add-plano" class="secondary">Concluir</button></div>
+      <div class="row small"><label>BNCC favoritos</label><div id="fa-bncc-favs"></div></div>
+    </div>
+    <div class="card">
+      <h3>3) Atividade da aula</h3>
+      <div class="row">
+        <label>Matéria</label><select id="fa-subj"><option value="portugues">Português</option><option value="matematica">Matemática</option></select>
+        <label>Ano</label><select id="fa-year"><option>2º ano</option><option selected>5º ano</option></select>
+        <label>BNCC</label><select id="fa-code"></select>
+        <label>Dificuldade</label><select id="fa-diff"><option value="facil">Fácil</option><option value="medio" selected>Médio</option><option value="dificil">Difícil</option></select>
+        <label>Qtd</label><input id="fa-qtd" style="width:80px" value="6"/>
+        <button id="fa-gen" class="secondary">Gerar</button>
+      </div>
+      <div class="row"><button id="fa-pdf-ex">PDF Exercícios</button><button id="fa-pdf-gab" class="ghost">Gabarito</button><button id="fa-zip" class="ghost">ZIP da aula</button><input id="fa-file" type="file" accept="image/*" class="hide"/><button id="fa-attach">Anexar foto</button></div>
+      <pre id="fa-preview" class="small"></pre>
+    </div>
+    <div class="dock">
+      <button data-step="att">Chamada</button>
+      <button data-step="content">Conteúdo</button>
+      <button data-step="ex">Exercícios</button>
+      <button data-step="file">Anexar foto</button>
+      <button data-step="close">Fechar</button>
+    </div>
+  </section>
+    
+  <!-- Agenda -->
+  <section id="tab-agenda" class="hide">
+    <div class="card">
+      <h2>Agenda semanal</h2>
+      <div class="row"><label>Início</label><input id="ag-start" type="date"/><label>Fim</label><input id="ag-end" type="date"/><button id="ag-load">Carregar</button></div>
+      <div id="ag-list" style="margin-top:8px"></div>
+      <h3>Duplicar plano</h3>
+      <div class="row"><label>ID do plano</label><input id="ag-src" style="width:100px" placeholder="ex.: 3"/><label>Datas (uma por linha)</label></div>
+      <textarea id="ag-dates" rows="3" placeholder="2025-08-12
+2025-08-19"></textarea>
+      <div class="row" style="margin-top:8px"><button id="ag-dup">Duplicar</button></div>
+    </div>
+  </section>
+
+  <!-- Agente: Plano -->
+  <section id="tab-lesson" class="hide">
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>Plano de Aula</h2>
+        <div class="row"><label>Turma</label><select id="pl-class"></select><label>Data</label><input id="pl-date" type="date"/></div>
+        <div class="row"><label>Duração</label><input id="pl-dur" style="width:140px" placeholder="50min"/></div>
+        <label>Tema</label><input id="pl-tema" placeholder="Tema central da aula"/>
+        <label>BNCC (digite e clique para adicionar)</label><div class="row"><input id="pl-bncc-q" placeholder="EF15LP16 ou 'leitura'"/><button id="pl-bncc-add" class="secondary">Adicionar</button></div>
+        <div id="pl-bncc-list" style="margin-top:6px"></div>
+        <label>Conteúdos/Habilidades</label><textarea id="pl-cont" rows="3"></textarea>
+        <label>Metodologias/Atividades</label><textarea id="pl-met" rows="3"></textarea>
+        <label>Recursos/Materiais</label><textarea id="pl-mat" rows="3"></textarea>
+        <label>Avaliação</label><textarea id="pl-av" rows="3"></textarea>
+        <label>Diferenciação/AEE</label><textarea id="pl-aee" rows="3"></textarea>
+        <label>Tarefa de casa (opcional)</label><textarea id="pl-tar" rows="2"></textarea>
+        <div class="row" style="margin-top:8px"><button id="pl-gerar">Gerar/Salvar</button><button id="pl-pdf" class="secondary">PDF</button></div>
+      </div>
+      <div class="card">
+        <h2>Prévia</h2>
+        <div id="pl-prev" class="code" style="max-height:520px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agente: Histórias -->
+  <section id="tab-story" class="hide">
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>Gerar História</h2>
+        <label>Tema</label><input id="st-tema" placeholder="amizade, reciclagem"/>
+        <label>Personagens (vírgula)</label><input id="st-pers" placeholder="Lia, Ravi"/>
+        <label>Breve enredo</label><textarea id="st-enr" rows="3" placeholder="Na escola, surge um desafio que exige cooperação."></textarea>
+        <div class="row"><label>Série/Ano</label><select id="st-serie"><option>2º ano</option><option>3º ano</option><option selected>5º ano</option></select><label>Estilo</label><select id="st-estilo"><option value="fabula">Fábula</option><option value="aventura" selected>Aventura</option><option value="misterio">Mistério</option><option value="conto">Conto</option></select><label>Tamanho</label><select id="st-size"><option value="curta" selected>Curta</option><option value="media">Média</option><option value="longa">Longa</option></select></div>
+        <div class="row" style="margin-top:8px"><button id="st-gerar">Gerar</button><button id="st-salvar" class="secondary">Salvar</button><button id="st-pdf" class="ghost">PDF</button></div>
+      </div>
+      <div class="card">
+        <h2>Prévia</h2>
+        <div id="st-prev" class="code" style="max-height:520px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exercícios -->
+  <section id="tab-ex" class="hide"><div class="layout" id="ex-wrap">
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>Gerador de Exercícios</h2>
+        <div class="card actions" style="margin:8px 0">
+          <h3>Gerador BNCC</h3>
+          <div class="row">
+            <label>Matéria</label>
+            <select id="ex-bncc-subj"><option value="portugues">Português</option><option value="matematica">Matemática</option></select>
+            <label>Ano</label>
+            <select id="ex-bncc-year"><option>2º ano</option><option selected>5º ano</option></select>
+            <label>Dificuldade</label>
+            <select id="ex-bncc-diff"><option value="facil">Fácil</option><option value="medio" selected>Médio</option><option value="dificil">Difícil</option></select>
+            <label>Código</label>
+            <select id="ex-bncc-code"></select>
+            <label>Qtd</label>
+            <input id="ex-bncc-qtd" style="width:80px" value="6"/>
+          </div>
+          <label>Tema (opcional)</label>
+          <input id="ex-bncc-theme" placeholder="Ex.: Leitura, Frações, Cooperação"/>
+          <div class="row" style="margin-top:8px"><button id="ex-bncc-gen">Gerar pela BNCC</button></div>
+        </div>
+        <div class="card" style="margin:8px 0">
+          <h3>Gerador rápido</h3>
+          <div class="row"><label>Tema</label><input id="ex-gen-tema" placeholder="Frações, leitura, rimas"/></div>
+          <div class="row"><label>Tipos</label>
+            <label class="small"><input type="checkbox" id="ex-g-mult" checked/> Múltipla</label>
+            <label class="small"><input type="checkbox" id="ex-g-vf"/> V/F</label>
+            <label class="small"><input type="checkbox" id="ex-g-lac"/> Lacuna</label>
+            <label class="small"><input type="number" id="ex-g-qtd" value="6" min="3" max="20" style="width:90px"/> itens</label>
+          </div>
+          <div class="row"><button id="ex-g-run">Gerar lista</button></div>
+        </div>
+        <label>Título</label><input id="ex-titulo" placeholder="Lista de exercícios — Frações"/>
+        <div class="row"><label>Turma</label><select id="ex-class"></select><label>Série</label><input id="ex-serie" style="width:120px" placeholder="5º ano"/></div>
+        <label>BNCC</label><div class="row"><input id="ex-bncc-q" placeholder="EF03MA12 ou 'fração'"/><button id="ex-bncc-add" class="secondary">Adicionar</button></div><div id="ex-bncc-list" style="margin-top:6px"></div>
+        <hr/>
+        <h3>Novo item</h3>
+        <div class="row"><label>Tipo</label><select id="ex-tipo"><option value="multipla">Múltipla escolha</option><option value="vf">Verdadeiro/Falso</option><option value="lacuna">Lacuna</option></select></div>
+        <label>Enunciado</label><textarea id="ex-enun" rows="3"></textarea>
+        <div id="ex-alt" class="hide">
+          <label>Alternativas (A-D)</label>
+          <textarea id="ex-alts" rows="3" placeholder="Uma por linha, 4 alternativas"></textarea>
+          <label>Correta (0-3)</label><input id="ex-correta" type="number" min="0" max="3" value="0" style="width:120px"/>
+        </div>
+        <div id="ex-vf" class="hide">
+          <label>Resposta (V/F)</label><select id="ex-vf-val"><option value="true">V</option><option value="false">F</option></select>
+        </div>
+        <div id="ex-lac" class="hide">
+          <label>Resposta esperada</label><input id="ex-lac-val" placeholder="Texto curto"/>
+        </div>
+        <label>Imagem (opcional)</label><input id="ex-img" type="file" accept="image/*"/>
+        <div class="row" style="margin-top:8px"><button id="ex-add">Adicionar item</button></div>
+      </div>
+      <div class="card">
+        <h2>Prévia & Exportação</h2>
+        <div id="ex-list" class="code" style="max-height:420px"></div>
+        <div class="row" style="margin-top:8px"><button id="ex-save">Salvar atividade</button><button id="ex-pdf" class="secondary">PDF Exercícios</button><button id="ex-gab" class="ghost">PDF Gabarito</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Banco de Questões -->
+  <!-- Config -->
+  <section id="tab-config" class="hide">
+    <div class="grid grid-2">
+      <div class="card"><h2>Preferências</h2>
+        <div class="row"><label>Turma padrão</label><select id="cfg-class"></select></div>
+        <div class="row"><label>Duração da aula (min)</label><input id="cfg-dur" value="50"/></div>
+        <div class="row"><label>Nome da professora</label><input id="cfg-name"/></div>
+        <div class="row"><label>Assinatura (rodapé PDFs)</label><input id="cfg-sign"/></div>
+        <div class="row"><label>Prefixo dos arquivos</label><input id="cfg-pref" placeholder="Profa Maelly - "/></div>
+        <div class="row"><label>Cor do tema</label><input id="cfg-theme" type="color" value="#60a5fa"/></div>
+        <div class="row"><button id="cfg-save" class="secondary">Salvar Preferências</button></div>
+      </div>
+      <div class="card"><h2>BNCC Favoritos</h2>
+        <div class="row"><input id="fav-code" placeholder="ex.: EF05MA07"/><button id="fav-add">Adicionar</button></div>
+        <div id="fav-list" class="small"></div>
+      </div>
+    </div>
+  </section>
+    
+  <section id="tab-bank" class="hide">
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>Salvar exercícios atuais → Banco</h2><div class="small">Use o Banco como sua coleção pessoal de questões.</div>
+        <div class="row"><label>Matéria</label><select id="qb-subj"><option value="portugues">Português</option><option value="matematica">Matemática</option></select>
+        <label>Ano</label><select id="qb-year"><option>2º ano</option><option selected>5º ano</option></select>
+        <label>BNCC</label><input id="qb-code" placeholder="ex.: EF05MA07"/></div>
+        <div class="row" style="margin-top:8px"><button id="qb-save">Salvar no banco</button></div>
+      </div>
+      <div class="card">
+        <h2>Montar prova do banco</h2>
+        <div class="row"><label>Matéria</label><select id="qb2-subj"><option value="portugues">Português</option><option value="matematica">Matemática</option></select>
+        <label>Ano</label><select id="qb2-year"><option>2º ano</option><option selected>5º ano</option></select>
+        <label>Códigos (vírgula)</label><input id="qb2-codes" placeholder="EF05MA07, EF05MA08"/></div>
+        <div class="row"><label>Quantidade</label><input id="qb2-qtd" type="number" value="8" style="width:100px"/></div>
+        <div class="row" style="margin-top:8px"><button id="qb-mix">Montar lista</button></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Importar/Exportar Banco</h2>
+      <div class="row"><button id="qb-exp" class="secondary">Exportar JSON</button><button id="qb-imp" class="ghost">Importar JSON</button><input id="qb-file" style="display:none" type="file" accept="application/json"/></div>
+    </div>
+  </section>
+
+  <!-- Backup -->
+  <section id="tab-backup" class="hide">
+    <div class="card">
+      <h2>Backup</h2><div class='small'>Salva <b>todas as turmas, presenças, planos, histórias, exercícios e arquivos</b> em um único arquivo <code>.maelly</code> criptografado. Use para migrar de aparelho ou fazer cópia de segurança.</div>
+      <label>Senha do backup</label><input id="bk-pass" type="password" placeholder="Mínimo 6 caracteres"/>
+      <div class="row" style="margin-top:8px"><button id="bk-exp">Exportar .maelly</button><button id="bk-imp" class="secondary">Importar .maelly</button><input id="bk-file" style="display:none" type="file" accept=".maelly,application/json"/></div>
+      <canvas id="bk-qr" style="margin-top:8px;background:#0b1220;border-radius:12px;padding:8px"></canvas>
+    </div>
+  </section>
+
+</main>
+<div class="toast" id="toast"></div>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" onerror="this.onerror=null;this.src='https://unpkg.com/jszip@3.10.1/dist/jszip.min.js'"></script>
+</body></html>

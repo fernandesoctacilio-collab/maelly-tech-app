@@ -1,0 +1,79 @@
+{
+  "portugues": {
+    "nome": "Língua Portuguesa",
+    "series": {
+      "2º ano": [
+        {
+          "tema": "Rimas e jogos de palavras",
+          "bncc": [
+            "EF02LP03",
+            "EF15LP16"
+          ],
+          "descricao": "Atividades com rimas, trava-línguas e leitura em voz alta."
+        },
+        {
+          "tema": "Compreensão de narrativa curta",
+          "bncc": [
+            "EF02LP06",
+            "EF12LP18"
+          ],
+          "descricao": "Ler conto curto; identificar personagens e ideia central."
+        }
+      ],
+      "5º ano": [
+        {
+          "tema": "Produção de narrativa",
+          "bncc": [
+            "EF05LP21",
+            "EF12LP18"
+          ],
+          "descricao": "Planejamento, rascunho e revisão de contos."
+        },
+        {
+          "tema": "Leitura e interpretação",
+          "bncc": [
+            "EF15LP16"
+          ],
+          "descricao": "Perguntas literais e inferenciais; vocabulário."
+        }
+      ]
+    }
+  },
+  "matematica": {
+    "nome": "Matemática",
+    "series": {
+      "2º ano": [
+        {
+          "tema": "Adição e subtração até 100",
+          "bncc": [
+            "EF02MA07"
+          ],
+          "descricao": "Situações-problema com material dourado e desenhos."
+        }
+      ],
+      "5º ano": [
+        {
+          "tema": "Multiplicação e divisão",
+          "bncc": [
+            "EF05MA07"
+          ],
+          "descricao": "Fatos fundamentais, propriedades e problemas contextualizados."
+        },
+        {
+          "tema": "Frações básicas",
+          "bncc": [
+            "EF05MA08"
+          ],
+          "descricao": "Parte-todo, leitura de frações e representações."
+        },
+        {
+          "tema": "Perímetro",
+          "bncc": [
+            "EF05MA22"
+          ],
+          "descricao": "Medidas de contorno de figuras planas."
+        }
+      ]
+    }
+  }
+}

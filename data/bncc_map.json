@@ -1,0 +1,82 @@
+{
+  "portugues": {
+    "2º ano": [
+      {
+        "codigo": "EF02LP01",
+        "rotulo": "Leitura de textos curtos"
+      },
+      {
+        "codigo": "EF02LP02",
+        "rotulo": "Informações explícitas"
+      },
+      {
+        "codigo": "EF02LP03",
+        "rotulo": "Rimas e sons finais"
+      },
+      {
+        "codigo": "EF02LP05",
+        "rotulo": "Personagens e cenário"
+      },
+      {
+        "codigo": "EF02LP06",
+        "rotulo": "Ideia central"
+      }
+    ],
+    "5º ano": [
+      {
+        "codigo": "EF05LP02",
+        "rotulo": "Inferência de informações"
+      },
+      {
+        "codigo": "EF05LP03",
+        "rotulo": "Pontuação e conectores"
+      },
+      {
+        "codigo": "EF05LP21",
+        "rotulo": "Produção de narrativa"
+      },
+      {
+        "codigo": "EF15LP16",
+        "rotulo": "Leitura e compreensão"
+      }
+    ]
+  },
+  "matematica": {
+    "2º ano": [
+      {
+        "codigo": "EF02MA04",
+        "rotulo": "Ordem e comparação (até 1000)"
+      },
+      {
+        "codigo": "EF02MA07",
+        "rotulo": "Adição/Subtração (até 100)"
+      },
+      {
+        "codigo": "EF02MA12",
+        "rotulo": "Medidas de tempo"
+      }
+    ],
+    "5º ano": [
+      {
+        "codigo": "EF05MA05",
+        "rotulo": "Múltiplos e divisores"
+      },
+      {
+        "codigo": "EF05MA07",
+        "rotulo": "Multiplicação/Divisão"
+      },
+      {
+        "codigo": "EF05MA08",
+        "rotulo": "Frações básicas"
+      },
+      {
+        "codigo": "EF05MA09",
+        "rotulo": "Comparar frações"
+      },
+      {
+        "codigo": "EF05MA22",
+        "rotulo": "Perímetro"
+      }
+    ]
+  }
+}

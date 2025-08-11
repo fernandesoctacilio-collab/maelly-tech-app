@@ -1,0 +1,128 @@
+[
+  {
+    "codigo": "EF12LP18",
+    "descricao": "Planejar e produzir textos de diferentes gêneros com ajuda do professor.",
+    "etapa": "EF1",
+    "componente": "Língua Portuguesa"
+  },
+  {
+    "codigo": "EF15LP16",
+    "descricao": "Ler e compreender textos de diferentes gêneros, com autonomia.",
+    "etapa": "EF1",
+    "componente": "Língua Portuguesa"
+  },
+  {
+    "codigo": "EF03MA12",
+    "descricao": "Resolver problemas com as quatro operações com números naturais.",
+    "etapa": "EF1",
+    "componente": "Matemática"
+  },
+  {
+    "codigo": "EF05MA20",
+    "descricao": "Reconhecer e comparar figuras geométricas planas e espaciais.",
+    "etapa": "EF1",
+    "componente": "Matemática"
+  },
+  {
+    "codigo": "EF05CI06",
+    "descricao": "Investigar características dos seres vivos e suas relações com o ambiente.",
+    "etapa": "EF1",
+    "componente": "Ciências"
+  },
+  {
+    "codigo": "EF02LP03",
+    "descricao": "Reconhecer e utilizar rimas, aliterações e jogos de palavras.",
+    "etapa": "EF1",
+    "componente": "Língua Portuguesa"
+  },
+  {
+    "codigo": "EF02LP06",
+    "descricao": "Identificar ideia central em textos narrativos curtos.",
+    "etapa": "EF1",
+    "componente": "Língua Portuguesa"
+  },
+  {
+    "codigo": "EF05LP21",
+    "descricao": "Planejar, produzir e revisar texto narrativo com coesão e coerência.",
+    "etapa": "EF1",
+    "componente": "Língua Portuguesa"
+  },
+  {
+    "codigo": "EF02MA07",
+    "descricao": "Resolver problemas com adição e subtração (até 100).",
+    "etapa": "EF1",
+    "componente": "Matemática"
+  },
+  {
+    "codigo": "EF05MA07",
+    "descricao": "Resolver problemas com multiplicação e divisão (números naturais).",
+    "etapa": "EF1",
+    "componente": "Matemática"
+  },
+  {
+    "codigo": "EF05MA08",
+    "descricao": "Compreender frações como parte de um inteiro e em retângulos.",
+    "etapa": "EF1",
+    "componente": "Matemática"
+  },
+  {
+    "codigo": "EF05MA22",
+    "descricao": "Resolver problemas envolvendo perímetro de figuras planas.",
+    "etapa": "EF1",
+    "componente": "Matemática"
+  },
+  {
+    "codigo": "EF02LP01",
+    "descricao": "Ler e compreender, com autonomia crescente, textos de circulação social.",
+    "etapa": "EF1",
+    "componente": "Língua Portuguesa"
+  },
+  {
+    "codigo": "EF02LP02",
+    "descricao": "Identificar informações explícitas em textos curtos.",
+    "etapa": "EF1",
+    "componente": "Língua Portuguesa"
+  },
+  {
+    "codigo": "EF02LP05",
+    "descricao": "Reconhecer personagens e cenário em narrativas curtas.",
+    "etapa": "EF1",
+    "componente": "Língua Portuguesa"
+  },
+  {
+    "codigo": "EF05LP02",
+    "descricao": "Inferir informações implícitas em textos variados.",
+    "etapa": "EF1",
+    "componente": "Língua Portuguesa"
+  },
+  {
+    "codigo": "EF05LP03",
+    "descricao": "Identificar efeitos de sentido de pontuação e conectores.",
+    "etapa": "EF1",
+    "componente": "Língua Portuguesa"
+  },
+  {
+    "codigo": "EF02MA04",
+    "descricao": "Comparar e ordenar números naturais (até 1000).",
+    "etapa": "EF1",
+    "componente": "Matemática"
+  },
+  {
+    "codigo": "EF02MA12",
+    "descricao": "Resolver problemas de medidas de tempo (hora e meia hora).",
+    "etapa": "EF1",
+    "componente": "Matemática"
+  },
+  {
+    "codigo": "EF05MA05",
+    "descricao": "Resolver problemas com múltiplos e divisores.",
+    "etapa": "EF1",
+    "componente": "Matemática"
+  },
+  {
+    "codigo": "EF05MA09",
+    "descricao": "Comparar e ordenar frações com mesmo denominador.",
+    "etapa": "EF1",
+    "componente": "Matemática"
+  }
+]
