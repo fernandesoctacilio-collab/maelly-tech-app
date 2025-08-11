@@ -87,7 +87,7 @@ $('#att-pdf').addEventListener('click', async ()=>{
   const date = $('#att-date').value;
   const faltosos = attCtrl.getAbsences();
   const { pdfAbsenceNotice } = await import('./modules/attendance.js'); const blob = await pdfAbsenceNotice({ turmaNome, date, faltosos });
-  const url = URL.createObjectURL(blob); Object.assign(document.createElement('a'),{href:url,download:'\1'}).click(); URL.revokeObjectURL(url);
+  const url = URL.createObjectURL(blob); Object.assign(document.createElement('a'),{href:url,download:'arquivo.pdf'}),{href:url,download:'arquivo.pdf'}).click(); URL.revokeObjectURL(url);
 });
 
 // ======= BNCC busca (explorar) =======
@@ -124,39 +124,42 @@ $('#pl-gerar').addEventListener('click', async ()=>{
 $('#pl-pdf').addEventListener('click', async ()=>{
   if(!lastLesson) return showToast('Gere/Salve o plano antes');
   const turmaNome = $('#pl-class').selectedOptions[0]?.textContent || 'Turma';
-  const { pdfLesson } = await import('./agents/lesson.js'); 
+  const { pdfLesson } = await import('./agents/lesson.js');
   const blob = await pdfLesson(lastLesson, { turmaNome });
-  const url = URL.createObjectURL(blob); 
-  Object.assign(document.createElement('a'), { href:url, download:'plano-aula.pdf' }).click(); 
-  URL.revokeObjectURL(url);
-});
-  const url = URL.createObjectURL(blob); Object.assign(document.createElement('a'),{href:url,download:'\1'}).click(); URL.revokeObjectURL(url);
+  const url = URL.createObjectURL(blob);
+  Object.assign(document.createElement('a'),{href:url,download:'plano-aula.pdf'}).click(); URL.revokeObjectURL(url);
 });
 
+
 // ======= Agente: História =======
-let lastStory=null;
+let lastStory = null;
 $('#st-gerar').addEventListener('click', ()=>{
-  const tema=$('#st-tema').value.trim()||'amizade';
+  const tema = ($('#st-tema').value||'amizade').trim();
   const personagens = ($('#st-pers').value||'Lia,Ravi').split(',').map(s=>s.trim()).filter(Boolean);
-  const enredo = $('#st-enr').value.trim()||'Na escola, surge um desafio que exige cooperação.';
-  const serie = $('#st-serie').value; const estilo=$('#st-estilo').value; const tamanho=$('#st-size').value;
-  import('./agents/story.js').then(m=>{ lastStory = m.buildStory({ tema: tema, personagens: personagens, enredo: enredo, serie: serie, estilo: estilo, tamanho: tamanho });
+  const enredo = ($('#st-enr').value||'Na escola, surge um desafio que exige cooperação.').trim();
+  const serie = $('#st-serie').value; const estilo = $('#st-estilo').value; const tamanho = $('#st-size').value;
+  import('./agents/story.js').then(m=>{
+    lastStory = m.buildStory({ tema, personagens, enredo, serie, estilo, tamanho });
+    setTimeout(()=>{
+      if(lastStory){
+        $('#st-prev').textContent = lastStory.title + '\n\n' + lastStory.text + '\n\n' + 'BNCC: ' + lastStory.bncc.join(', ');
+        showToast('História gerada');
+      }
+    }, 0);
+  });
 });
-$('#st-gerar').addEventListener('maelly_update',()=>{});
-// Wait a tick then show preview
-setTimeout(()=>{ if(lastStory){ $('#st-prev').textContent = lastStory.title + '\n\n' + lastStory.text + '\n\n' + 'BNCC: '+lastStory.bncc.join(', ');
-  showToast('História gerada'); }
-}, 0);
 $('#st-salvar').addEventListener('click', async ()=>{
   if(!lastStory) return showToast('Gere uma história');
-  const { saveStoryToDB } = await import('./agents/story.js'); const id = await saveStoryToDB(lastStory); showToast('Salvo (#'+id+')');
+  const { saveStoryToDB } = await import('./agents/story.js');
+  const id = await saveStoryToDB(lastStory); showToast('Salvo (#'+id+')');
 });
 $('#st-pdf').addEventListener('click', async ()=>{
   if(!lastStory) return showToast('Gere uma história');
-  const { pdfStory } = await import('./agents/story.js'); const blob = await pdfStory(lastStory); const url=URL.createObjectURL(blob);
-  Object.assign(document.createElement('a'),{href:url,download:'\1'}).click(); URL.revokeObjectURL(url);
+  const { pdfStory } = await import('./agents/story.js');
+  const blob = await pdfStory(lastStory);
+  const url = URL.createObjectURL(blob);
+  Object.assign(document.createElement('a'),{href:url,download:'arquivo.pdf'}),{href:url,download:'arquivo.pdf'}).click(); URL.revokeObjectURL(url);
 });
-
 // ======= Exercícios =======
 let ex_bncc = []; let items = [];
 $('#ex-bncc-add').addEventListener('click', async ()=>{
@@ -217,18 +220,16 @@ $('#ex-pdf').addEventListener('click', async ()=>{
     itens: items 
   });
   const url = URL.createObjectURL(blob); 
-  Object.assign(document.createElement('a'),{href:url,download:'exercicios.pdf'}).click(); 
-  URL.revokeObjectURL(url);
+  Object.assign(document.createElement('a'),{href:url,download:'arquivo.pdf'}),{href:url,download:'arquivo.pdf'}).click(); URL.revokeObjectURL(url);
 });
-  const url = URL.createObjectURL(blob); Object.assign(document.createElement('a'),{href:url,download:'\1'}).click(); URL.revokeObjectURL(url);
+  const url = URL.createObjectURL(blob); Object.assign(document.createElement('a'),{href:url,download:'arquivo.pdf'}),{href:url,download:'arquivo.pdf'}).click(); URL.revokeObjectURL(url);
 });
 $('#ex-gabarito').addEventListener('click', async ()=>{
   if(!items.length) return showToast('Adicione itens');
   const { pdfAnswerKey } = await import('./modules/exercises.js');
   const blob = await pdfAnswerKey({ titulo: 'Gabarito', itens: items });
   const url = URL.createObjectURL(blob); 
-  Object.assign(document.createElement('a'),{href:url,download:'gabarito.pdf'}).click(); 
-  URL.revokeObjectURL(url);
+  Object.assign(document.createElement('a'),{href:url,download:'arquivo.pdf'}),{href:url,download:'arquivo.pdf'}).click(); URL.revokeObjectURL(url);
 });
-  const url = URL.createObjectURL(blob); Object.assign(document.createElement('a'),{href:url,download:'\1'}).click(); URL.revokeObjectURL(url);
+  const url = URL.createObjectURL(blob); Object.assign(document.createElement('a'),{href:url,download:'arquivo.pdf'}),{href:url,download:'arquivo.pdf'}).click(); URL.revokeObjectURL(url);
 });
